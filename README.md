@@ -158,22 +158,9 @@ erDiagram
 
 ## 📊 Tableau de Bord Power BI
 
-> 🚧 **En cours de développement**
+Voici le résultat de la couche Gold connectée en mode Import sur Power BI, illustrant les KPIs principaux de notre catalogue :
 
-<!--
-TODO - POWER BI (à faire après le pipeline) :
-1. Ouvrir Power BI Desktop
-2. Se connecter à la couche Gold sur Azure Data Lake Gen2 (format Delta)
-   → Source : abfss://gold@datalakefodi2026.dfs.core.windows.net/category_stats
-3. Créer les visuels suivants :
-   - 📈 Histogramme : Prix moyen par catégorie
-   - 📦 Graphique en anneau : Nombre de produits par catégorie
-   - 🏆 Tableau : Top produits par rating (depuis la couche Silver)
-   - 💰 Boxplot ou histogramme : Distribution des prix
-4. Publier sur Power BI Service
-5. Faire une capture d'écran du dashboard final
-6. Remplacer cette section par : ![Dashboard](docs/images/dashboard_powerbi.png)
--->
+![Dashboard Power BI](images/dashboard_powerbi.png)
 
 ---
 
