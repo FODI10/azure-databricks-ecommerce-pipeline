@@ -102,6 +102,17 @@ flowchart LR
 
 ---
 
+## 🧠 Décisions d'Architecture : Pourquoi Databricks plutôt que Synapse ?
+
+Dans l'écosystème Azure, le choix du moteur de calcul et d'analyse est crucial. Pour ce projet de pipeline End-to-End, **Azure Databricks** a été privilégié par rapport à **Azure Synapse Analytics** pour plusieurs raisons stratégiques :
+
+* **1. Approche "Lakehouse" Native :** Databricks étant le créateur du format **Delta Lake**, l'intégration est parfaite. L'architecture Lakehouse permet de traiter et requêter les données directement sur le Data Lake (ADLS Gen2) avec les performances d'un Data Warehouse classique, évitant ainsi la duplication des données.
+* **2. Optimisation des Coûts (FinOps) :** Contrairement aux pools SQL dédiés de Synapse qui peuvent engendrer des coûts fixes importants, le cluster Databricks utilisé ici est configuré avec l'**auto-termination**. Il ne consomme des crédits que pendant l'exécution du code PySpark, garantissant une facturation stricte à l'usage.
+* **3. Puissance et flexibilité de PySpark :** L'architecture Medallion nécessite des transformations programmatiques (nettoyage, gestion des nulls, agrégations). L'environnement de notebook Databricks offre la meilleure expérience développeur pour écrire, tester et débugger du code PySpark distribué.
+* **4. L'alternative Databricks SQL :** Une fois la couche Gold générée, la fonctionnalité "Databricks SQL" offre un point de terminaison Serverless (similaire à l'expérience BigQuery sur GCP) parfait pour y connecter **Power BI**. Cela rend la mise en place d'un entrepôt de données relationnel traditionnel (type Azure SQL DB ou Synapse Dedicated Pool) inutile et redondante pour ce cas d'usage.
+
+---
+
 ## 🔄 Pipeline sur Airflow
 
 Le DAG `azure_ecommerce_pipeline` s'exécute quotidiennement (`@daily`) et orchestre l'ensemble du pipeline :
